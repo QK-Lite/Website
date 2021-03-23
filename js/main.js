@@ -367,7 +367,8 @@ $(function () {
     });
 
     var portfolioitems = ["cocktail-john-collins.html", "cocktail-cuba-libre.html", "cocktail-tequila-sunrise.html", "cocktail-dry-martini", "cocktail-boulevardier", "cocktail-negroni"
-    ,"cocktail-americano", "cocktail-fernet-con-coca", "cocktail-aperol", "cocktail-champagne", "cocktail-dark-n-stormy", "cocktail-old-fashioned"];
+    ,"cocktail-americano", "cocktail-fernet-con-coca", "cocktail-aperol", "cocktail-champagne", "cocktail-dark-n-stormy", "cocktail-old-fashioned", "cocktail-hanky-panky", "cocktail-manhattan"
+    ,"cocktail-martinez", "cocktail-sazerac", "cocktail-stinger", "cocktail-tuxedo"];
     $(document).on('click', '.naviguationportfolio .nextportfolio', function () {
 
         btnclicked = true;
