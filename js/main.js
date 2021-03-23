@@ -20,7 +20,7 @@ $(function () {
         $("#wrapper").toggleClass("left-toggled");
     });
     $(window).on('resize', function () {
-        if ($(window).width() > 1280) {
+        if ($(window).width() > 960) {
             $("#wrapper").removeClass('left-toggled ');
         }
     });
@@ -76,7 +76,7 @@ $(function () {
     $(".pt-trigger").on('click', function (e) {
         $(".pt-trigger").removeClass("active");
         $(this).addClass("active");
-        if ($(window).width() < 560) {
+        if ($(window).width() < 1024) {
             $("#wrapper").removeClass('left-toggled ');
         }
 
