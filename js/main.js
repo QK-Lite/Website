@@ -24,17 +24,18 @@ $(function () {
             $("#wrapper").removeClass('left-toggled ');
         }
     });
+
     /*--------------------------------------------------
     ---------------------   Menus  ---------------------
     ---------------------------------------------------*/
     if (url('?page') === 'home' || url('?page') === null) {
         $("#home").trigger("click").addClass("active");
     };
+    if (url('?page') === 'services') {
+        $("#services").trigger("click").addClass("active");
+    };
     if (url('?page') === 'about') {
         $("#about").trigger("click").addClass("active");
-    };
-    if (url('?page') === 'contact') {
-        $("#contact").trigger("click").addClass("active");
     };
     if (url('?page') === 'portfolio') {
         $("#portfolio").trigger("click").addClass("active");
@@ -45,15 +46,18 @@ $(function () {
     if (url('?page') === 'availability') {
         $("#availability").trigger("click").addClass("active");
     };
+    if (url('?page') === 'contact') {
+        $("#contact").trigger("click").addClass("active");
+    };
 
     $("#home").on('click', function (event) {
         History.pushState(null, null, '?page=home');
     });
+    $("#services").on('click', function (event) {
+        History.pushState(null, null, '?page=services');
+    });
     $("#about").on('click', function (event) {
         History.pushState(null, null, '?page=about');
-    });
-    $("#contact").on('click', function (event) {
-        History.pushState(null, null, '?page=contact');
     });
     $("#portfolio").on('click', function (event) {
         History.pushState(null, null, '?page=portfolio');
@@ -63,6 +67,9 @@ $(function () {
     });
     $("#availability").on('click', function (event) {
         History.pushState(null, null, '?page=availability');
+    });
+    $("#contact").on('click', function (event) {
+        History.pushState(null, null, '?page=contact');
     });
 
 
@@ -198,24 +205,46 @@ $(function () {
 
             // Set up button clicks
             setupFilters = function () {
-                var $btns = $filterOptions.children();
+            var $btns = $filterOptions.children();
+            var selectedFilters = []
+    
+    
                 $btns.on('click', function (e) {
                     e.preventDefault();
+    
                     var $this = $(this),
                         isActive = $this.hasClass('active'),
-                        group = isActive ? 'all' : $this.data('group');
-
-                    // Hide current label, show current label in title
-                    if (!isActive) {
-                        $('.portfolio-sorting li a').removeClass('active');
+                        group = $this.data('group');
+    
+                    if(group == 'all') { // Si ALL es seleccionado, borramos el array de filtros seleccionados y activamos ALL.
+                        selectedFilters = []
+                        $this.toggleClass('active')
+                    } else {
+    
+                        //
+                        // TODO #1: deseleccionar ALL
+                        //
+    
+                        // Si el filtro seleccionado ya se encuentra activado, lo sacamos del array de filtros seleccionados.
+                        // Si no se encuentra seleccionado, lo agregamos al array
+                        if( isActive ) {
+                            var filterIndex = selectedFilters.indexOf(group);
+                            selectedFilters = selectedFilters.splice(filterIndex-1, 1);
+                        } else {
+                            selectedFilters.push(group);
+                        }
+    
+                        $this.toggleClass('active')
                     }
-
-                    $this.toggleClass('active');
-
+    
+                    //
+                    // TODO #2: Filtrar los elementos con todos los valores del array, en lugar de uno solo
+                    //
+    
                     // Filter elements
                     $grid.shuffle('shuffle', group);
                 });
-
+    
                 $btns = null;
             },
 
@@ -337,7 +366,8 @@ $(function () {
 
     });
 
-    var portfolioitems = ["portfolio-item1.html", "portfolio-item2.html"];
+    var portfolioitems = ["cocktail-john-collins.html", "cocktail-cuba-libre.html", "cocktail-tequila-sunrise.html", "cocktail-dry-martini", "cocktail-boulevardier", "cocktail-negroni"
+    ,"cocktail-americano", "cocktail-fernet-con-coca", "cocktail-aperol", "cocktail-champagne", "cocktail-dark-n-stormy", "cocktail-old-fashioned"];
     $(document).on('click', '.naviguationportfolio .nextportfolio', function () {
 
         btnclicked = true;
@@ -402,7 +432,6 @@ $(function () {
 
 
     });
-
 
     /*--------------------------------------------------
     ---------------------   Blog  ----------------------
@@ -574,7 +603,6 @@ $(function () {
     var individual_price_table = $('#price_tables').find('.individual');
     var company_price_table = $('#price_tables').find('.company');
 
-
     $('.switch-toggles').find('.individual').addClass('active');
     $('#price_tables').find('.individual').addClass('active');
 
@@ -592,9 +620,7 @@ $(function () {
         $(this).siblings().removeClass('active');
         company_price_table.addClass('active');
         individual_price_table.removeClass('active');
-    });
-
-    */
+    }); */
 
     function buildItem(id, type, length, src, preview, link, seen, time) {
         return {
@@ -671,15 +697,16 @@ $(function () {
             localStorage: true,
             stories: [
                 {
-                    id: "johndoe",
+                    id: "aprobarsj",
                     photo: "images/portrait.jpg",
                     name: "HISTORIAS",
                     link: "",
-                    lastUpdated: 1504096032,
+                    lastUpdated: 1615743856,
+                    /* https://timestamp.online/ */
                     items: [
-                        buildItem("johndoe-1", "photo", 5, "images/portfolio5.jpeg", "images/portfolio5.jpeg", '', false, 1504096032),
-                        buildItem("johndoe-2", "video", 0, "images/storyvideo.mp4", "images/storyvideo.mp4", '', false, 1504096032),
-                        buildItem("johndoe-3", "photo", 3, "images/portrait.jpg", "images/portrait.jpg", '', false, 1504096032),
+                        buildItem("aprobarsj-1", "photo", 5, "images/portrait2.jpg", "images/portrait2.jpg", '', false, 1615743856),
+                        buildItem("aprobarsj-2", "video", 0, "images/storyvideo.mp4", "images/storyvideo.mp4", '', false, 1615743856),
+                        buildItem("aprobarsj-3", "photo", 3, "images/portrait.jpg", "images/portrait.jpg", '', false, 1615743856),
                     ]
                 }
             ]
@@ -969,7 +996,7 @@ $(function () {
 
         if (!events.length) {
             var div = createElement('div', 'event empty');
-            var span = createElement('span', '', 'No Events For This Day');
+            var span = createElement('span', '', 'Sin eventos');
 
             div.appendChild(span);
             wrapper.appendChild(div);
@@ -1029,25 +1056,18 @@ $(function () {
 /*Demo Purpose*/
 ! function () {
     var data = [
-        { eventName: 'Meeting With Developers', calendar: 'Work', color: 'red' },
-        { eventName: 'Workshop - Web Developers', calendar: 'Work', color: 'red' },
-        { eventName: 'Release First Version', calendar: 'Work', color: 'red' },
-        { eventName: 'New App Demo', calendar: 'Work', color: 'red' },
+        { eventName: 'Exámen', calendar: 'Work', color: 'red', date: '2021-02-08' },
 
-        { eventName: 'San Degio vs Portalnd', calendar: 'Sports', color: 'blue' },
-        { eventName: 'Denver vs Houston', calendar: 'Sports', color: 'blue' },
-        { eventName: 'Portalnd vs Denver', calendar: 'Sports', color: 'blue' },
-        { eventName: 'Denver vs San Degio', calendar: 'Sports', color: 'blue' },
+        { eventName: 'Clase Gin', calendar: 'Sports', color: 'blue', date: '2021-02-28' },
+        { eventName: 'Clase Whisky', calendar: 'Sports', color: 'blue', date: '2021-03-19' },
+        { eventName: 'Clase Ron', calendar: 'Sports', color: 'blue', date: '2021-02-04' },
 
-        { eventName: 'School Activities', calendar: 'Kids', color: 'yellow' },
-        { eventName: 'Parent Conference', calendar: 'Kids', color: 'yellow' },
-        { eventName: 'Kids Party', calendar: 'Kids', color: 'yellow' },
-        { eventName: 'kids Coding', calendar: 'Kids', color: 'yellow' },
+        { eventName: 'Bodega Graffigna', calendar: 'Kids', color: 'yellow', date: '2021-02-25' },
+        { eventName: 'Antigua Bodega', calendar: 'Kids', color: 'yellow', date: '2021-02-19' },
+        { eventName: 'Bodega San Nicolas', calendar: 'Kids', color: 'yellow', date: '2021-03-31' },
 
-        { eventName: 'Gardening', calendar: 'Other', color: 'green' },
-        { eventName: 'Soccer Team', calendar: 'Other', color: 'green' },
-        { eventName: 'Teach Kids To Code', calendar: 'Other', color: 'green' },
-        { eventName: 'Startup Meeting', calendar: 'Other', color: 'green' }
+        { eventName: 'Día del Bartener', calendar: 'Other', color: 'green', date: '2021-02-08' },
+        { eventName: 'Día de la Coctelera Boston', calendar: 'Other', color: 'green', date: '2021-02-10' },
     ];
     /*Demo Purpose*/
 

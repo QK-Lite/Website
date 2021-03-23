@@ -1,3 +1,7 @@
-A�adir conversor de oz a ml a cl
-A�adir multiple etiqueta (Directos - Gin, etc)
-A�adir efectos sobre imagenes de portfolio
+﻿A�adir conversor de oz a ml a cl
+A�adir multiple etiqueta (Directos - Gin, etc)
+A�adir efectos sobre imagenes de portfolio
+A�adir boton Video Al lado de boton de recetas y poner un reproductor
+Añadir un @media para reducir el espacio en moviles en la sección de facts en "Cursos"
+Añadir datos curiosos flotante.
+Añadir pestaña jerga coctelera.
